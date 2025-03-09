@@ -17,7 +17,7 @@ EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
 
 app = Flask(__name__)
-app.secret_key = SECRET_KEY  # Secret key for session management
+app.secret_key = SECRET_KEY
 
 class Base(DeclarativeBase):
     pass
