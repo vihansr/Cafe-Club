@@ -5,9 +5,19 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Float, ForeignKey, func
 import smtplib
+import os
+from dotenv import load_dotenv
+
+#ENVIRONMENTAL VARIABLES
+load_dotenv("data.env")
+SECRET_KEY = os.getenv("SECRET_KEY")
+SMTP_SERVER = os.getenv("SMTP_SERVER")
+SMTP_PORT = os.getenv("SMTP_PORT")
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_PASS = os.getenv("EMAIL_PASS")
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"  # Secret key for session management
+app.secret_key = SECRET_KEY  # Secret key for session management
 
 class Base(DeclarativeBase):
     pass
@@ -115,10 +125,9 @@ def add_cafe():
         return redirect(url_for("index"))
     return render_template("add.html", user=current_user)
 
+
 @app.route('/user_add', methods=['GET','POST'])
 def user_add_cafe():
-    user = "workspacepersonal2006@gmail.com"
-    password = "urro yxej nges hxzy"
     if request.method == "POST":
             name=request.form["name"],
             location=request.form["location"],
@@ -127,13 +136,13 @@ def user_add_cafe():
             detail=request.form["detail"],
             rating=0.0
 
-            with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+            with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as connection:
                 connection.starttls()
-                connection.login(user= user, password= password)
+                connection.login(user= EMAIL_USER, password= EMAIL_PASS)
                 connection.sendmail(
-                    from_addr=user,
-                    to_addrs="workspacepersonal2006@gmail.com",
-                    msg=f'''New Cafe Addition Request\n\n
+                    from_addr=EMAIL_USER,
+                    to_addrs=EMAIL_USER,
+                    msg=f'''Subject: New Cafe Addition Request\n\n
                     A user has requested to add a new cafe:
                     
                     Name: {name}
@@ -178,3 +187,5 @@ def delete(cafe_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
