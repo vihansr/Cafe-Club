@@ -25,7 +25,7 @@ The application is deployed and available at: **[Cafe Club](https://cafeclub.onr
 ## Installation & Setup
 ### **1. Clone the Repository:**
 
-   git clone https://github.com/your-repo/cafe-reviews.git
+   git clone https://github.com/vihansr/Cafe-Club.git
    cd cafe-reviews
 
 ### **2. Create a Virtual Environment (Optional but Recommended):**
