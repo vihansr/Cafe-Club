@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Review {{ cafe.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">Review {{ cafe.name }}</h2>
+    <p><strong>Location:</strong> {{ cafe.location }}</p>
+    <p><strong>Details:</strong> {{ cafe.detail }}</p>
+    <p><strong>Coffee Price:</strong> ₹{{ cafe.coffee_price }}</p>
+    <p class="rating">Current Rating: ⭐ {{ cafe.rating }}/5</p>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="rating" class="form-label">Your Rating (out of 5)</label>
+            <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Review</button>
+    </form>
+</div>
+{% endblock %}

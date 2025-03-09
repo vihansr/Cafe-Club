@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Edit {{ cafe.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">Edit {{ cafe.name }}</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Cafe Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ cafe.name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name="location" value="{{ cafe.location }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="img_url" class="form-label">Image URL</label>
+            <input type="url" class="form-control" id="img_url" name="img_url" value="{{ cafe.img_url }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="coffee_price" class="form-label">Coffee Price</label>
+            <input type="text" class="form-control" id="coffee_price" name="coffee_price" value="{{ cafe.coffee_price }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="detail" class="form-label">Details</label>
+            <textarea class="form-control" id="detail" name="detail" rows="3" required>{{ cafe.detail }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Update Cafe</button>
+    </form>
+</div>
+{% endblock %}
