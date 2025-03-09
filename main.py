@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 
 #ENVIRONMENTAL VARIABLES
-load_dotenv("data.env")
+load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 SMTP_SERVER = os.getenv("SMTP_SERVER")
 SMTP_PORT = os.getenv("SMTP_PORT")
@@ -187,5 +187,3 @@ def delete(cafe_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
